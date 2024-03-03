@@ -1,12 +1,18 @@
 import { readFileSync } from "fs";
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import gql from "graphql-tag";
 import { ApolloServer } from "@apollo/server";
+import { buildSubgraphSchema } from "@apollo/subgraph";
+import { expressMiddleware } from "@apollo/server/express4";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import resolvers from "./resolvers.js";
 
 dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 4000;
 
 const typeDefs = readFileSync("./src/schema.graphql", { encoding: "utf-8" });
 
@@ -15,19 +21,17 @@ const server = new ApolloServer({
 	resolvers,
 });
 
-const { url } = await startStandaloneServer(server, {
-	listen: { port: 5000 },
+app.use("/project", (req: Request, res: Response) => {
+	return res.status(200).json({
+		message: "Enter the Hardsho app.",
+		version: "1.0.0",
+		name: "Hardsho",
+	});
 });
 
-console.log(`Graphql server runs at ${url}`);
+await server.start();
 
-const app = express();
-const PORT = process.env.PORT || 4000;
-
-app.use(cors());
-app.use(express.json());
-
-app.get("/", () => {});
+app.use("/graphql", cors(), express.json(), expressMiddleware(server));
 
 app.listen(PORT, () => {
 	console.log(`Hardsho app running on server host: ${PORT}`);

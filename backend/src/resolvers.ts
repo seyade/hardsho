@@ -4,7 +4,7 @@ import {
 	CreateProjectInput,
 	DeleteProjectInput,
 	UpdateProjectInput,
-} from "./types";
+} from "./types.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -19,7 +19,7 @@ const resolvers = {
 		id: (parent: any) => parent.id ?? parent._id,
 	},
 	Query: {
-		async projects(): Promise<Project[]> {
+		async getProjects(): Promise<Project[]> {
 			try {
 				const { data, error }: PostgrestResponse<Project> = await supabase
 					.from("projects")
@@ -33,17 +33,16 @@ const resolvers = {
 			}
 		},
 
-		async project(_parent: any, { id }: { id: number }) {
+		async getOneProject(_parent: any, { id }: { id: number }) {
 			try {
 				const { data, error }: PostgrestResponse<Project> = await supabase
 					.from("projects")
-					.select(id.toString())
-					.limit(1)
-					.single();
+					.select()
+					.eq("id", id);
 
 				if (error) throw error;
 
-				return data;
+				return data[0] || null;
 			} catch (error) {
 				throw Error(`Query:Project Error message: ${error}`);
 			}
@@ -57,9 +56,10 @@ const resolvers = {
 			try {
 				const { data, error } = await supabase.from("projects").upsert([input]);
 
-				console.log("Create:Project Error  log: ", error);
-
-				if (error) throw error;
+				if (error) {
+					console.log("Create:Project Error  log: ", error);
+					throw error;
+				}
 
 				return data ? data[0] : null;
 			} catch (error) {
@@ -69,18 +69,20 @@ const resolvers = {
 
 		async updateProject(
 			_parent: any,
-			{ id, input }: { id: number; input: UpdateProjectInput }
+			{ input }: { input: UpdateProjectInput }
 		) {
 			try {
 				const { data, error } = await supabase
 					.from("projects")
 					.update(input)
-					.eq("id", id);
+					.eq("id", input.id);
 
 				if (error) throw error;
 
 				return data;
-			} catch (error) {}
+			} catch (error) {
+				throw Error(`Update:Project Error  message: ${error}`);
+			}
 		},
 
 		async deleteProject(

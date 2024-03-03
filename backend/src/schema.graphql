@@ -1,23 +1,12 @@
-type Project {
-	id: ID
-	projectName: String
-	projectOrigin: String
-	projectDate: String
-	description: String
-	uiCode: String
-	cssCode: String
-	jsCode: String
-	createdAt: String
-	modifiedAt: String
-}
-
 type Query {
-	projects: [Project]
+	getProjects: [Project]
+	getOneProject(id: ID!): Project
 }
 
 type Mutation {
 	createProject(input: createProjectInput): Project
-	deleteProject(input: deleteProjectInput): Project
+	updateProject(input: updateProjectInput): Project
+	deleteProject(id: ID!): Project
 }
 
 input createProjectInput {
@@ -30,7 +19,26 @@ input createProjectInput {
 	jsCode: String
 }
 
-input deleteProjectInput {
-	id: Int
+input updateProjectInput {
+	id: ID!
 	projectName: String
+	description: String
+	projectOrigin: String
+	projectDate: String
+	uiCode: String
+	cssCode: String
+	jsCode: String
+}
+
+type Project {
+	id: ID
+	projectName: String
+	projectOrigin: String
+	projectDate: String
+	description: String
+	uiCode: String
+	cssCode: String
+	jsCode: String
+	createdAt: String
+	modifiedAt: String
 }
