@@ -33,6 +33,50 @@ await server.start();
 
 app.use("/graphql", cors(), express.json(), expressMiddleware(server));
 
+app.get("/", (req: Request, res: Response) => {
+	res.status(200).json({ app: "Hardsho", version: "1.0.0" });
+});
+
+app.get("/", (req: Request, res: Response) => {
+	res.status(200).json({ app: "Hardsho", version: "1.0.0" });
+});
+
+app.get("/projects", (req: Request, res: Response) => {
+	res.status(200).json({ app: "Hardsho", method: "GET all projects" });
+});
+
+app.get("/projects/:id", (req: Request, res: Response) => {
+	res.status(200).json({
+		app: "Hardsho",
+		method: "GET one project",
+		projectId: req.params.id,
+	});
+});
+
+app.post("/projects", (req: Request, res: Response) => {
+	res.status(200).json({ app: "Hardsho", method: "CREATE a project" });
+});
+
+app.put("/projects/:id", (req: Request, res: Response) => {
+	res
+		.status(200)
+		.json({
+			app: "Hardsho",
+			method: "UPDATE a project",
+			projectId: req.params.id,
+		});
+});
+
+app.delete("/projects/:id", (req: Request, res: Response) => {
+	res
+		.status(200)
+		.json({
+			app: "Hardsho",
+			method: "DELETEa a project",
+			projectId: req.params.id,
+		});
+});
+
 app.listen(PORT, () => {
 	console.log(`Hardsho app running on server host: ${PORT}`);
 });
