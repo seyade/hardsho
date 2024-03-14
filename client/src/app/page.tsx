@@ -50,9 +50,12 @@ export default function Home() {
 					</div>
 
 					<div className="w-full px-52">
-						<button className="flex-1 text-xl px-8 py-3 bg-slate-800 rounded-full text-white text-center font-medium">
-							Start Showing
-						</button>
+						<a
+							href="/sign-up"
+							className="flex-1 text-xl px-8 py-3 bg-slate-800 rounded-full text-white text-center font-medium"
+						>
+							Start Showing Off
+						</a>
 					</div>
 				</div>
 

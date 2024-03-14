@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 
 const Dashboard = () => {
-	const [artefacts, setArtefacts] = useState([]);
+	const [artefacts, setArtefacts] = useState([1]);
 
 	return (
 		<div className="grid grid-cols-12">
@@ -21,7 +21,7 @@ const Dashboard = () => {
 			</header>
 
 			{!artefacts.length ? (
-				<div className="col-span-12 grid place-items-center h-screen bg-slate-500">
+				<div className="col-span-12 grid place-items-center h-screen bg-slate-200">
 					<div className="text-center">
 						<h1 className="text-xl font-bold mb-10">
 							Create your first artefact.
