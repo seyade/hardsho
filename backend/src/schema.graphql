@@ -1,6 +1,6 @@
 type Query {
-	getProjects: [Project]
-	getOneProject(id: ID!): Project
+	projects: [Project]
+	project(id: ID!): Project
 }
 
 type Mutation {

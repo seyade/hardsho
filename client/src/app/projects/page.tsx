@@ -10,7 +10,7 @@ const Projects = () => {
 	if (error) return <h2>{error.message}. Fix it then!</h2>;
 	if (loading) return <h2>Loading...!</h2>;
 
-	console.log("PROJECTS:::", data.getProjects);
+	console.log("PROJECTS:::", data.projects);
 
 	return (
 		<div>
@@ -18,8 +18,8 @@ const Projects = () => {
 
 			<div>
 				<ul>
-					{data.getProjects.length &&
-						data.getProjects.map((project: any, index: number) => {
+					{data.projects.length &&
+						data.projects.map((project: any, index: number) => {
 							return (
 								<li key={project.projectName}>
 									{project.projectName}: {project.description}

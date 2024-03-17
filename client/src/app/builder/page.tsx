@@ -92,7 +92,7 @@ const Builder = () => {
 				<section className="output-pane w-full h-full">
 					<div className="flex py-2 px-3 border-l-2 border-r-2 border-b-2 border-b-zinc-300">
 						<h3 className="flex items-center">
-							<span className="mr-2 text-sm">Code</span>
+							<span className="mr-2 text-sm">View</span>
 							<LuEye />
 						</h3>
 					</div>

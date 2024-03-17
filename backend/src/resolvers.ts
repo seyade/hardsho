@@ -19,7 +19,7 @@ const resolvers = {
 		id: (parent: any) => parent.id ?? parent._id,
 	},
 	Query: {
-		async getProjects(): Promise<Project[]> {
+		async projects(): Promise<Project[]> {
 			try {
 				const { data, error }: PostgrestResponse<Project> = await supabase
 					.from("projects")
@@ -33,7 +33,7 @@ const resolvers = {
 			}
 		},
 
-		async getOneProject(_parent: any, { id }: { id: number }) {
+		async project(_parent: any, { id }: { id: number }) {
 			try {
 				const { data, error }: PostgrestResponse<Project> = await supabase
 					.from("projects")
