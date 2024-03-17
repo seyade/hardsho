@@ -37,19 +37,19 @@ export default function Home() {
 				</div>
 			</header>
 
-			<section className="banner col-span-12 grid grid-cols-2 mb-5">
+			<section className="plusjakartasans banner col-span-12 grid grid-cols-2 mb-5">
 				<div className="grid place-items-center h-auto py-28 justify-center bg-slate-300">
 					<div className="mb-11">
-						<h2 className="text-7xl font-medium px-52 mb-5">
-							Hardsho. makes it easy to Craft Your Code Legacy
+						<h2 className="text-7xl font-medium px-20 mb-5">
+							Hardsho. Makes it easy to bring your code alive
 						</h2>
-						<h3 className="text-xl font-medium px-52">
+						<h3 className="text-xl font-medium px-20">
 							A Portfolio Platform for Contractors and Freelancers to showcase
-							their work without hassle.
+							clickable work.
 						</h3>
 					</div>
 
-					<div className="w-full px-52">
+					<div className="w-full px-20">
 						<a
 							href="/sign-up"
 							className="flex-1 text-xl px-8 py-3 bg-slate-800 rounded-full text-white text-center font-medium"

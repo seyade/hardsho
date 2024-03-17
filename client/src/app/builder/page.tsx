@@ -1,10 +1,14 @@
 "use client";
 
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LuCode2, LuEye } from "react-icons/lu";
 import Pane from "@/components/pane/Pane";
-import { CREATE_PROJECTS } from "@/graphql/mutations";
+import {
+	CREATE_PROJECTS,
+	UPDATE_PROJECTS,
+	DELETE_PROJECTS,
+} from "@/graphql/mutations";
 import { Button } from "@/components/ui/button";
 
 const Builder = () => {
@@ -12,9 +16,12 @@ const Builder = () => {
 	const [CSSValue, setCSSValue] = useState("");
 	const [JSValue, setJSValue] = useState("");
 
-	const iframeRef = useRef();
-
-	const [createProject, { error, loading }] = useMutation(CREATE_PROJECTS);
+	const [createProject, { error: createError, loading: createLoading }] =
+		useMutation(CREATE_PROJECTS);
+	const [updateProject, { error: updateError, loading: updateLoading }] =
+		useMutation(UPDATE_PROJECTS);
+	const [deleteProject, { error: deleteError, loading: deleteLoading }] =
+		useMutation(DELETE_PROJECTS);
 
 	const onHandleHTML = (event: ChangeEvent<HTMLTextAreaElement>) => {
 		const { value } = event.currentTarget;
@@ -52,33 +59,67 @@ const Builder = () => {
 			});
 	};
 
+	const editProject = async () => {
+		updateProject({
+			variables: {
+				input: {
+					id: "",
+					projectName: "Test 1",
+					projectDate: null,
+					projectOrigin: null,
+					description: "Test 1 description",
+					uiCode: HTMLValue,
+					cssCode: CSSValue,
+					jsCode: JSValue,
+				},
+			},
+		})
+			.then(result => {
+				console.log(result.data.updateProject);
+				console.log("PROJECT_UPDATED:::");
+			})
+			.catch(error => {
+				console.error(error);
+			});
+	};
+
+	const removeProject = () => {
+		deleteProject({
+			variables: {
+				id: "",
+			},
+		})
+			.then(result => {
+				console.log(result.data.deleteProject);
+				console.log("PROJECT_UPDATED:::");
+			})
+			.catch(error => {
+				console.error(error);
+			});
+	};
+
 	const iframeContent = `
     <style>${CSSValue}</style>
     ${HTMLValue}
     <script>${JSValue}</script>
   `;
 
-	if (loading) return <h1>Loading...</h1>;
-	if (error) return <h1>{error.message}</h1>;
+	if (createLoading || updateLoading || deleteLoading)
+		return <h1>Loading...</h1>;
+
+	if (createError) return <h1>{createError.message}</h1>;
+	if (updateError) return <h1>{updateError.message}</h1>;
+	if (deleteError) return <h1>{deleteError.message}</h1>;
 
 	return (
 		<div className="px-12 py-6">
-			<header className="flex justify-between items-center mb-5 w-full">
+			<header className="plusjakartasans flex justify-between items-center mb-5 w-full">
 				<h1 className="flex items-center text-3xl font-bold">
-					<span className="mr-2">Builder</span> <LuCode2 />
+					<span className="mr-2">Build Your Showcase</span> <LuCode2 />
 				</h1>
 
 				<Button onClick={saveProject}>Save Project</Button>
 			</header>
-
-			{/* <code>
-				HTML: <h1>Title here</h1>
-				CSS: h1 { font-family: "Open Sans", sans-serif; color: teal; }
-				JS: const title = document.querySelector('h1');
-				title.addEventListener('click', () => {
-					alert('Title is clicked');
-				})
-			</code> */}
 
 			<section className="editorw-full h-[90vh]">
 				<div className="code flex justify-between items-center">

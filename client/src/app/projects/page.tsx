@@ -1,32 +1,50 @@
 "use client";
 
-import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECTS } from "@/graphql/queries";
+import { HiArrowLongLeft } from "react-icons/hi2";
+import {
+	Card,
+	CardContent,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
+import { Project, Projects } from "../../types";
+import Link from "next/link";
 
 const Projects = () => {
-	const { loading, error, data } = useQuery(GET_PROJECTS);
+	const { loading, error, data } = useQuery<Projects>(GET_PROJECTS);
 
 	if (error) return <h2>{error.message}. Fix it then!</h2>;
 	if (loading) return <h2>Loading...!</h2>;
 
-	console.log("PROJECTS:::", data.projects);
+	console.log("PROJECTS:::", data?.projects);
 
 	return (
 		<div>
+			<header>
+				<Link href="/dashboard" className="flex items-center">
+					<HiArrowLongLeft /> <span className="ml-2">Back</span>
+				</Link>
+			</header>
 			<h1 className="text-3xl font-bold">Projects</h1>
 
-			<div>
-				<ul>
-					{data.projects.length &&
-						data.projects.map((project: any, index: number) => {
-							return (
-								<li key={project.projectName}>
-									{project.projectName}: {project.description}
-								</li>
-							);
-						})}
-				</ul>
+			<div className="col-span-12 grid grid-cols-4 gap-2 p-2">
+				{data?.projects.length &&
+					data?.projects.map((project: Project) => {
+						return (
+							<Card className="w-64" key={project.projectName}>
+								<CardHeader>
+									<CardTitle>{project.projectName}</CardTitle>
+								</CardHeader>
+								<CardContent>{project.description}</CardContent>
+								<CardFooter>
+									<Link href={`/projects/${project.id}`}>View</Link>
+								</CardFooter>
+							</Card>
+						);
+					})}
 			</div>
 		</div>
 	);

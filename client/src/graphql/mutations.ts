@@ -8,3 +8,21 @@ export const CREATE_PROJECTS = gql`
 		}
 	}
 `;
+
+export const UPDATE_PROJECTS = gql`
+	mutation UpdateProject($input: updateProjectInput) {
+		updateProject(input: $input) {
+			id
+			projectName
+		}
+	}
+`;
+
+export const DELETE_PROJECTS = gql`
+	mutation DeleteProject($deleteProjectId: ID!) {
+		deleteProject(id: $deleteProjectId) {
+			id
+			projectName
+		}
+	}
+`;

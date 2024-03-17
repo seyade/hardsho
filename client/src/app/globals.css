@@ -78,3 +78,11 @@
 .inconsolota {
 	font-family: var(--font-inconsolota);
 }
+
+.plusjakartasans {
+	font-family: var(--font-plus-jakarta-sans);
+}
+
+.opensans {
+	font-family: var(--font-opensans);
+}
