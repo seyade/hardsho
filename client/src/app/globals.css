@@ -75,14 +75,19 @@
 	}
 }
 
+/* FONTS */
 .inconsolota {
 	font-family: var(--font-inconsolota);
 }
 
 .plusjakartasans {
-	font-family: var(--font-plus-jakarta-sans);
+	font-family: var(--font-plusjakartasans);
 }
 
 .opensans {
 	font-family: var(--font-opensans);
+}
+
+.spaceGrotesk {
+	font-family: var(--font-spacegrotesk);
 }

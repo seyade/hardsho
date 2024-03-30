@@ -6,7 +6,7 @@ import Project from "@/components/project/Project";
 
 const Details = ({ id }: { id: string }) => {
 	const { data, error, loading } = useQuery(GET_ONE_PROJECT, {
-		variables: { projectId: "9" },
+		variables: { projectId: "11" },
 	});
 
 	if (loading) return <h1>Loading...!</h1>;

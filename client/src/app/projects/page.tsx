@@ -30,11 +30,11 @@ const Projects = () => {
 			</header>
 			<h1 className="text-3xl font-bold">Projects</h1>
 
-			<div className="col-span-12 grid grid-cols-4 gap-2 p-2">
+			<div className="col-span-12 grid grid-cols-4 gap-4 p-2">
 				{data?.projects.length &&
 					data?.projects.map((project: Project) => {
 						return (
-							<Card className="w-64" key={project.projectName}>
+							<Card key={project.projectName}>
 								<CardHeader>
 									<CardTitle>{project.projectName}</CardTitle>
 								</CardHeader>

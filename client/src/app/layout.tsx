@@ -4,6 +4,7 @@ import {
 	Inconsolata,
 	Plus_Jakarta_Sans,
 	Open_Sans,
+	Space_Grotesk,
 } from "next/font/google";
 import ApolloWrapper from "./ApolloWrapper";
 import "./globals.css";
@@ -16,10 +17,16 @@ const inconsolata = Inconsolata({
 	variable: "--font-inconsolota",
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const spacegrotesk = Inconsolata({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700"],
+	variable: "--font-spacegrotesk",
+});
+
+const plusjakartasans = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600"],
-	variable: "--font-plus-jakarta-sans",
+	variable: "--font-plusjakartasans",
 });
 
 const opensans = Open_Sans({
@@ -41,7 +48,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.className} ${inconsolata.variable} ${plusJakartaSans.variable} ${opensans.variable}`}
+				className={`${inter.className} ${inconsolata.variable} ${plusjakartasans.variable} ${opensans.variable} ${spacegrotesk.variable}`}
 			>
 				<ApolloWrapper>{children}</ApolloWrapper>
 			</body>
