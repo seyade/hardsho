@@ -1,67 +1,15 @@
-type Query {
-	clients(userId: ID!): [Craft]
-	client(id: ID): Craft
-
-	projects(clientId: ID!): [Project]
-	project(id: ID!): Project
-
-	crafts(projectId: ID!): [Craft]
-	craft(id: ID): Craft
-
-	user(id: ID!): User
-	users: [User]
-}
-
-type Mutation {
-	createUser(input: UserInput): User!
-	updateUser(id: ID!, input: UserInput!): User!
-	deleteUser(id: ID!): User!
-
-	createClient(userid: ID!, input: ClientInput): Client!
-	updateClient(id: ID!, input: ClientInput!): Client!
-	deleteClient(id: ID!): Client!
-
-	createProject(clientId: ID!, input: ProjectInput): Project
-	updateProject(id: ID!, input: ProjectInput): Project
-	deleteProject(id: ID!): Project
-
-	createCraft(projectId: ID!, input: CraftInput): Craft!
-	updateCraft(id: ID!, input: CraftInput): Craft!
-	deleteCraft(id: ID): Craft!
-}
-
-# Client
-input ClientInput {
-	name: String!
-}
-
-# Project
-input ProjectInput {
-	projectName: String
-	description: String
-	projectDate: String
-	clientName: String
-	crafts: [Craft]
-}
-
-# Craft
-input CraftInput {
-	description: String
-	htmlCode: String
-	cssCode: String
-	jsCode: String
-	createdAt: String
-	modifiedAt: String
-}
-
-# User
-input UserInput {
+type User {
+	id: ID!
 	username: String!
 	email: String!
 	profile: String
 	name: String
 	role: String!
+	appTenure: DateTime
 	skills: [String!]
+	clients: [Client!]
+	createdAt: DateTime!
+	updatedAt: DateTime!
 }
 
 type Client {
@@ -95,16 +43,64 @@ type Craft {
 	updatedAt: DateTime!
 }
 
-type User {
-	id: ID!
+type Query {
+	clients(userId: ID!): [Craft]
+	client(id: ID): Craft
+
+	projects(clientId: ID!): [Project]
+	project(id: ID!): Project
+
+	crafts(projectId: ID!): [Craft]
+	craft(id: ID): Craft
+
+	user(id: ID!): User
+	users: [User]
+}
+
+type Mutation {
+	createUser(input: UserInput): User!
+	updateUser(id: ID!, input: UserInput!): User!
+	deleteUser(id: ID!): User!
+
+	createClient(userid: ID!, input: ClientInput): Client!
+	updateClient(id: ID!, input: ClientInput!): Client!
+	deleteClient(id: ID!): Client!
+
+	createProject(clientId: ID!, input: ProjectInput): Project
+	updateProject(id: ID!, input: ProjectInput): Project
+	deleteProject(id: ID!): Project
+
+	createCraft(projectId: ID!, input: CraftInput): Craft!
+	updateCraft(id: ID!, input: CraftInput): Craft!
+	deleteCraft(id: ID): Craft!
+}
+
+input ClientInput {
+	name: String!
+}
+
+input ProjectInput {
+	projectName: String
+	description: String
+	projectDate: String
+	clientName: String
+	crafts: [Craft]
+}
+
+input CraftInput {
+	description: String
+	htmlCode: String
+	cssCode: String
+	jsCode: String
+	createdAt: String
+	modifiedAt: String
+}
+
+input UserInput {
 	username: String!
 	email: String!
 	profile: String
 	name: String
 	role: String!
-	appTenure: DateTime
 	skills: [String!]
-	clients: [Client!]
-	createdAt: DateTime!
-	updatedAt: DateTime!
 }

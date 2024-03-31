@@ -4,9 +4,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 // import gql from "graphql-tag";
 import { ApolloServer } from "@apollo/server";
+import {} from "@graphql-tools/merge";
 // import { buildSubgraphSchema } from "@apollo/subgraph";
 import { expressMiddleware } from "@apollo/server/express4";
-// import { startStandaloneServer } from "@apollo/server/standalone";
+import { startStandaloneServer } from "@apollo/server/standalone";
 // import resolvers from "./resolvers.example.js";
 import rootResolver from "./resolvers/index.js";
 
@@ -34,6 +35,7 @@ await server.start();
 
 app.use("/graphql", cors(), express.json(), expressMiddleware(server));
 
+// ROUTES
 app.get("/", (req: Request, res: Response) => {
 	res.status(200).json({ app: "Hardsho", version: "1.0.0" });
 });

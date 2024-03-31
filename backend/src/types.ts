@@ -1,35 +1,3 @@
-// Queries
-export interface Client {
-	id: string;
-	userId?: string;
-	name: string;
-	projects?: Project[];
-	createdAt?: string;
-	updatedAt?: string;
-}
-
-export interface Project {
-	id: string;
-	clienId?: string;
-	name?: string;
-	date?: string;
-	description?: string;
-	crafts?: Craft[];
-	createdAt?: string;
-	updatedAt?: string;
-}
-
-export interface Craft {
-	id: string;
-	projectId?: string;
-	description?: string;
-	htmlCode?: string;
-	cssCode?: string;
-	jsCode?: string;
-	createdAt?: string;
-	updatedAt?: string;
-}
-
 export interface User {
 	id: string;
 	username: string;
@@ -44,46 +12,68 @@ export interface User {
 	updatedAt?: string;
 }
 
-// Mutations
-export interface ClientInput {
-	name: string;
-}
+export type UserInput = Omit<
+	User,
+	"id" | "appTenure" | "createdAt" | "updatedAt"
+>;
 
-export interface DeleteClientInput {
+export type DeleteUserInput = {
 	id: string;
+};
+
+export interface Client {
+	id: string;
+	userId?: string;
+	name: string;
+	projects?: Project[];
+	createdAt?: string;
+	updatedAt?: string;
 }
 
-export interface ProjectInput {
+export type ClientInput = {
+	name: string;
+};
+
+export type DeleteClientInput = {
+	id: string;
+};
+
+export interface Project {
+	id: string;
+	clienId?: string;
 	name?: string;
-	description?: string;
 	date?: string;
+	description?: string;
 	crafts?: Craft[];
+	createdAt?: string;
+	updatedAt?: string;
 }
 
-export interface DeleteProjectInput {
+export type ProjectInput = Omit<
+	Project,
+	"id" | "clientId" | "createdAt" | "updatedAt"
+>;
+
+export type DeleteProjectInput = {
 	id: string;
-}
+};
 
-export interface CraftInput {
-	description: string;
-	htmlCode: string;
-	cssCode: string;
-	jsCode: string;
-}
-
-export interface DeleteCraftInput {
+export interface Craft {
 	id: string;
+	projectId?: string;
+	description?: string;
+	htmlCode?: string;
+	cssCode?: string;
+	jsCode?: string;
+	createdAt?: string;
+	updatedAt?: string;
 }
 
-export interface UserInput {
-	username: string;
-	email: string;
-	profile: string;
-	name: string;
-	role: string;
-	skills: string[];
-}
+export type CraftInput = Omit<
+	Craft,
+	"id" | "projectId" | "createdAt" | "updatedAt"
+>;
 
-export interface DeleteUserInput {
+export type DeleteCraftInput = {
 	id: string;
-}
+};
