@@ -3,8 +3,8 @@ import {
 	dataStore,
 	PostgrestResponse,
 	PostgrestSingleResponse,
-} from "../databaseConfig";
-import { Project, ProjectInput } from "../types";
+} from "../databaseConfig/index.js";
+import { Project, ProjectInput } from "../types.js";
 
 const projectResolver = {
 	Project: {

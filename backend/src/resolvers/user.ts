@@ -2,8 +2,8 @@ import {
 	dataStore,
 	PostgrestResponse,
 	PostgrestSingleResponse,
-} from "../databaseConfig";
-import { User, UserInput } from "../types";
+} from "../databaseConfig/index.js";
+import { User, UserInput } from "../types.js";
 
 const userResolver = {
 	User: {

@@ -2,8 +2,8 @@ import {
 	dataStore,
 	PostgrestResponse,
 	PostgrestSingleResponse,
-} from "../databaseConfig";
-import { Client, ClientInput } from "../types";
+} from "../databaseConfig/index.js";
+import { Client, ClientInput } from "../types.js";
 
 const clientResolver = {
 	Client: {

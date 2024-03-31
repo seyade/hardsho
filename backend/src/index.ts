@@ -2,13 +2,13 @@ import { readFileSync } from "fs";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import gql from "graphql-tag";
+// import gql from "graphql-tag";
 import { ApolloServer } from "@apollo/server";
-import { buildSubgraphSchema } from "@apollo/subgraph";
+// import { buildSubgraphSchema } from "@apollo/subgraph";
 import { expressMiddleware } from "@apollo/server/express4";
-import { startStandaloneServer } from "@apollo/server/standalone";
-import resolvers from "./resolvers.example.js";
-import rootResolver from "./resolvers";
+// import { startStandaloneServer } from "@apollo/server/standalone";
+// import resolvers from "./resolvers.example.js";
+import rootResolver from "./resolvers/index.js";
 
 dotenv.config();
 

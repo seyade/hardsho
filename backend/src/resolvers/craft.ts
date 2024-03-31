@@ -4,8 +4,8 @@ import {
 	dataStore,
 	PostgrestResponse,
 	PostgrestSingleResponse,
-} from "../databaseConfig";
-import { Craft, CraftInput } from "../types";
+} from "../databaseConfig/index.js";
+import { Craft, CraftInput } from "../types.js";
 
 const window = new JSDOM("").window;
 const purify = DOMPurify(window);

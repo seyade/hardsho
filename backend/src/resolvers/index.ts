@@ -1,8 +1,8 @@
 import { mergeResolvers } from "@graphql-tools/merge";
-import userResolver from "./user";
-import clientResolver from "./client";
-import projectResolver from "./project";
-import craftResolver from "./craft";
+import userResolver from "./user.js";
+import clientResolver from "./client.js";
+import projectResolver from "./project.js";
+import craftResolver from "./craft.js";
 
 export default mergeResolvers([
 	userResolver,
