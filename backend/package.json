@@ -6,7 +6,9 @@
 	"type": "module",
 	"scripts": {
 		"compile": "tsc",
+		"transpile": "ts-node --transpileOnly",
 		"start": "npm run compile && node ./dist/index.js",
+		"start:watch": "nodemon ./src/index.ts",
 		"start:app": "ts-node --esm ./src/index.ts",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -20,6 +22,8 @@
 		"@babel/preset-env": "^7.24.0",
 		"@babel/preset-react": "^7.23.3",
 		"@babel/traverse": "^7.24.0",
+		"@graphql-tools/merge": "^9.0.3",
+		"@graphql-tools/schema": "^10.0.3",
 		"@supabase/supabase-js": "^2.39.7",
 		"@types/graphql": "^14.5.0",
 		"babel-register": "^6.26.0",
@@ -37,12 +41,17 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"ts-node": "^10.9.2",
-		"typescript": "^5.3.3"
+		"typescript": "^5.3.3",
+		"uuid": "^9.0.1"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.17",
+		"@types/dompurify": "^3.0.5",
 		"@types/express": "^4.17.21",
+		"@types/jsdom": "^21.1.6",
 		"@types/node": "^20.11.19",
+		"dompurify": "^3.0.10",
+		"jsdom": "^24.0.0",
 		"nodemon": "^3.0.3"
 	}
 }

@@ -1,44 +1,110 @@
 type Query {
-	projects: [Project]
+	clients(userId: ID!): [Craft]
+	client(id: ID): Craft
+
+	projects(clientId: ID!): [Project]
 	project(id: ID!): Project
+
+	crafts(projectId: ID!): [Craft]
+	craft(id: ID): Craft
+
+	user(id: ID!): User
+	users: [User]
 }
 
 type Mutation {
-	createProject(input: createProjectInput): Project
-	updateProject(input: updateProjectInput): Project
+	createUser(input: UserInput): User!
+	updateUser(id: ID!, input: UserInput!): User!
+	deleteUser(id: ID!): User!
+
+	createClient(userid: ID!, input: ClientInput): Client!
+	updateClient(id: ID!, input: ClientInput!): Client!
+	deleteClient(id: ID!): Client!
+
+	createProject(clientId: ID!, input: ProjectInput): Project
+	updateProject(id: ID!, input: ProjectInput): Project
 	deleteProject(id: ID!): Project
+
+	createCraft(projectId: ID!, input: CraftInput): Craft!
+	updateCraft(id: ID!, input: CraftInput): Craft!
+	deleteCraft(id: ID): Craft!
 }
 
-input createProjectInput {
-	projectName: String
-	description: String
-	projectOrigin: String
-	projectDate: String
-	uiCode: String
-	cssCode: String
-	jsCode: String
+# Client
+input ClientInput {
+	name: String!
 }
 
-input updateProjectInput {
-	id: ID!
+# Project
+input ProjectInput {
 	projectName: String
 	description: String
-	projectOrigin: String
 	projectDate: String
-	uiCode: String
-	cssCode: String
-	jsCode: String
+	clientName: String
+	crafts: [Craft]
 }
 
-type Project {
-	id: ID
-	projectName: String
-	projectOrigin: String
-	projectDate: String
+# Craft
+input CraftInput {
 	description: String
-	uiCode: String
+	htmlCode: String
 	cssCode: String
 	jsCode: String
 	createdAt: String
 	modifiedAt: String
+}
+
+# User
+input UserInput {
+	username: String!
+	email: String!
+	profile: String
+	name: String
+	role: String!
+	skills: [String!]
+}
+
+type Client {
+	id: ID!
+	userId: ID!
+	name: String!
+	projects: [Project!]!
+	createdAt: DateTime!
+	updatedAt: DateTime!
+}
+
+type Project {
+	id: ID!
+	clientId: ID!
+	name: String!
+	date: String!
+	description: String!
+	crafts: [Craft!]!
+	createdAt: DateTime!
+	updatedAt: DateTime!
+}
+
+type Craft {
+	id: ID!
+	projectId: ID!
+	description: String!
+	htmlCode: String!
+	cssCode: String!
+	jsCode: String!
+	createdAt: DateTime!
+	updatedAt: DateTime!
+}
+
+type User {
+	id: ID!
+	username: String!
+	email: String!
+	profile: String
+	name: String
+	role: String!
+	appTenure: DateTime
+	skills: [String!]
+	clients: [Client!]
+	createdAt: DateTime!
+	updatedAt: DateTime!
 }

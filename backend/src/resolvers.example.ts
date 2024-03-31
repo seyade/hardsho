@@ -1,10 +1,8 @@
 import { createClient, PostgrestResponse } from "@supabase/supabase-js";
-import {
-	Project,
-	CreateProjectInput,
-	DeleteProjectInput,
-	UpdateProjectInput,
-} from "./types.js";
+import DOMPurify from "dompurify";
+import { JSDOM } from "jsdom";
+import { v4 as uuid4 } from "uuid";
+import { Project, DeleteProjectInput } from "./types.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -13,6 +11,9 @@ const supabase = createClient(
 	process.env.SUPABASE_URL as string,
 	process.env.SUPABASE_APIKEY as string
 );
+
+const window = new JSDOM("").window;
+const purify = DOMPurify(window);
 
 const resolvers = {
 	Project: {
@@ -54,7 +55,15 @@ const resolvers = {
 			{ input }: { input: CreateProjectInput }
 		) {
 			try {
-				const { data, error } = await supabase.from("projects").upsert([input]);
+				const { data, error } = await supabase.from("projects").upsert([
+					{
+						...input,
+						projectId: uuid4(),
+						htmlCode: input.htmlCode && purify.sanitize(input.htmlCode),
+						cssCode: input.cssCode && purify.sanitize(input.cssCode),
+						jsCode: input.jsCode && purify.sanitize(input.jsCode),
+					},
+				]);
 
 				if (error) {
 					console.log("Create:Project Error  log: ", error);
@@ -74,8 +83,13 @@ const resolvers = {
 			try {
 				const { data, error } = await supabase
 					.from("projects")
-					.update(input)
-					.eq("id", input.id);
+					.update({
+						...input,
+						htmlCode: input.htmlCode && purify.sanitize(input.htmlCode),
+						cssCode: input.cssCode && purify.sanitize(input.cssCode),
+						jsCode: input.jsCode && purify.sanitize(input.jsCode),
+					})
+					.eq("id", input.projectId);
 
 				if (error) throw error;
 
@@ -93,7 +107,7 @@ const resolvers = {
 				const { data, error } = await supabase
 					.from("projects")
 					.delete()
-					.eq("id", input.id);
+					.eq("id", input.projectId);
 
 				if (error) throw error;
 

@@ -1,33 +1,89 @@
+// Queries
+export interface Client {
+	id: string;
+	userId?: string;
+	name: string;
+	projects?: Project[];
+	createdAt?: string;
+	updatedAt?: string;
+}
+
 export interface Project {
-	id?: number;
-	projectName?: string;
-	projectOrigin?: string;
-	projectDate?: string;
+	id: string;
+	clienId?: string;
+	name?: string;
+	date?: string;
 	description?: string;
-	uiCode?: string;
+	crafts?: Craft[];
+	createdAt?: string;
+	updatedAt?: string;
+}
+
+export interface Craft {
+	id: string;
+	projectId?: string;
+	description?: string;
+	htmlCode?: string;
 	cssCode?: string;
 	jsCode?: string;
+	createdAt?: string;
+	updatedAt?: string;
 }
 
-export interface Projects {
-	projects: Project[];
+export interface User {
+	id: string;
+	username: string;
+	email: string;
+	profile?: string;
+	name?: string;
+	role?: string;
+	appTenure?: number;
+	skills?: string[];
+	clients: Client[];
+	createdAt?: string;
+	updatedAt?: string;
 }
 
-export interface CreateProjectInput {
-	projectName?: string;
+// Mutations
+export interface ClientInput {
+	name: string;
+}
+
+export interface DeleteClientInput {
+	id: string;
+}
+
+export interface ProjectInput {
+	name?: string;
 	description?: string;
-	projectOrigin?: string;
-	projectDate?: string;
-	uiCode?: string;
-	cssCode?: string;
-	jsCode?: string;
-}
-
-export interface UpdateProjectInput extends CreateProjectInput {
-	id: number;
+	date?: string;
+	crafts?: Craft[];
 }
 
 export interface DeleteProjectInput {
-	id?: string;
-	projectName?: string;
+	id: string;
+}
+
+export interface CraftInput {
+	description: string;
+	htmlCode: string;
+	cssCode: string;
+	jsCode: string;
+}
+
+export interface DeleteCraftInput {
+	id: string;
+}
+
+export interface UserInput {
+	username: string;
+	email: string;
+	profile: string;
+	name: string;
+	role: string;
+	skills: string[];
+}
+
+export interface DeleteUserInput {
+	id: string;
 }

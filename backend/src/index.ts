@@ -7,7 +7,8 @@ import { ApolloServer } from "@apollo/server";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import { expressMiddleware } from "@apollo/server/express4";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import resolvers from "./resolvers.js";
+import resolvers from "./resolvers.example.js";
+import rootResolver from "./resolvers";
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ const typeDefs = readFileSync("./src/schema.graphql", { encoding: "utf-8" });
 
 const server = new ApolloServer({
 	typeDefs,
-	resolvers,
+	resolvers: rootResolver,
 });
 
 app.use("/project", (req: Request, res: Response) => {
@@ -58,23 +59,19 @@ app.post("/projects", (req: Request, res: Response) => {
 });
 
 app.put("/projects/:id", (req: Request, res: Response) => {
-	res
-		.status(200)
-		.json({
-			app: "Hardsho",
-			method: "UPDATE a project",
-			projectId: req.params.id,
-		});
+	res.status(200).json({
+		app: "Hardsho",
+		method: "UPDATE a project",
+		projectId: req.params.id,
+	});
 });
 
 app.delete("/projects/:id", (req: Request, res: Response) => {
-	res
-		.status(200)
-		.json({
-			app: "Hardsho",
-			method: "DELETEa a project",
-			projectId: req.params.id,
-		});
+	res.status(200).json({
+		app: "Hardsho",
+		method: "DELETEa a project",
+		projectId: req.params.id,
+	});
 });
 
 app.listen(PORT, () => {
