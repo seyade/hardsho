@@ -25,13 +25,13 @@ const spacegrotesk = Space_Grotesk({
 
 const plusjakartasans = Plus_Jakarta_Sans({
 	subsets: ["latin"],
-	weight: ["300", "400", "500", "600"],
+	weight: ["300", "400", "500", "600", "700", "800"],
 	variable: "--font-plusjakartasans",
 });
 
 const opensans = Open_Sans({
 	subsets: ["latin"],
-	weight: ["300", "400", "500", "600"],
+	weight: ["300", "400", "500", "600", "700", "800"],
 	variable: "--font-opensans",
 });
 
@@ -50,7 +50,11 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} ${inconsolata.variable} ${plusjakartasans.variable} ${opensans.variable} ${spacegrotesk.variable}`}
 			>
-				<ApolloWrapper>{children}</ApolloWrapper>
+				<div className="h-full bg-gradient-to-b from-[#00042d] via-[#170e00] to-[#04001e]">
+					<main className="m-auto lg:max-w-[1440px] text-white ">
+						<ApolloWrapper>{children}</ApolloWrapper>
+					</main>
+				</div>
 			</body>
 		</html>
 	);
