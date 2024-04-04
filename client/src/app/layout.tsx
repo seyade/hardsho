@@ -17,7 +17,7 @@ const inconsolata = Inconsolata({
 	variable: "--font-inconsolota",
 });
 
-const spacegrotesk = Inconsolata({
+const spacegrotesk = Space_Grotesk({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700"],
 	variable: "--font-spacegrotesk",
