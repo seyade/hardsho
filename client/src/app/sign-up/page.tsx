@@ -2,11 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { z, ZodType } from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 // import { Input } from "@/components/ui/input";
 import Input from "@/components/Input/Input";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type User = {
 	username: string;
@@ -51,16 +52,24 @@ const SignUp = () => {
 	};
 
 	return (
-		<div>
-			<h1 className="text-3xl font-bold">Sign Up</h1>
+		<div className="py-2 px-11">
+			<header className="flex mb-6">
+				<h1 className="text-3xl font-extrabold">.Onbod</h1>
+			</header>
 
-			<section>
+			<section className="opensans flex flex-col justify-center text-center p-11 m-auto w-1/3">
+				<h2 className="spacegrotesk mb-4 text-4xl font-extrabold">Sign Up</h2>
+
+				<p className="mb-4 font-semibold text-zinc-500">
+					Let&apos;s get started to show your craft.
+				</p>
 				<form onSubmit={handleSubmit(onHandleSubmit)}>
 					<Input
 						name="username"
 						register={register}
 						error={errors.username}
 						placeholder="Username"
+						className="w-full px-3 py-3 mb-4 rounded-md text-zinc-700 text-sm font-semibold bg-zinc-100"
 					/>
 
 					<Input
@@ -68,6 +77,7 @@ const SignUp = () => {
 						register={register}
 						error={errors.email}
 						placeholder="Email"
+						className="w-full px-3 py-3 mb-4 rounded-md text-zinc-700 text-sm font-semibold bg-zinc-100"
 					/>
 
 					<Input
@@ -76,6 +86,7 @@ const SignUp = () => {
 						error={errors.password}
 						placeholder="Password"
 						type="password"
+						className="w-full px-3 py-3 mb-4 rounded-md text-zinc-700 text-sm font-semibold bg-zinc-100"
 					/>
 
 					<Input
@@ -84,9 +95,21 @@ const SignUp = () => {
 						error={errors.confirmPassword}
 						placeholder="Confirm Password"
 						type="password"
+						className="w-full px-3 py-3 mb-4 rounded-md text-zinc-700 text-sm font-semibold bg-zinc-100"
 					/>
 
-					<Button type="submit">Sign up</Button>
+					<Button type="submit" className="w-full mb-4">
+						Create Account
+					</Button>
+
+					<div>
+						<p className="mb-4 font-semibold text-zinc-500">
+							Already have an account?{" "}
+							<Link className="text-blue-800 font-bold" href="/login">
+								Log in
+							</Link>
+						</p>
+					</div>
 				</form>
 			</section>
 		</div>

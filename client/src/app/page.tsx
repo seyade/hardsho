@@ -5,7 +5,7 @@ export default function Home() {
 		<main className="grid grid-cols-12 px-11 py-5">
 			<header className="col-span-12 h-11 pb-4 flex justify-between items-center font-medium">
 				<div className="flex items-center">
-					<h1 className="text-3xl font-extrabold">.Hardsho</h1>
+					<h1 className="text-3xl font-extrabold">.Onbod</h1>
 					<nav className="ml-12">
 						<ul className="flex">
 							<li className="mx-4">
@@ -41,7 +41,7 @@ export default function Home() {
 				<div className="grid place-items-center h-auto py-28 justify-center bg-slate-300">
 					<div className="mb-11">
 						<h2 className="text-7xl font-medium px-20 mb-5">
-							Hardsho. Makes it easy to bring your code alive
+							Onbod. Makes it easy to bring your code alive
 						</h2>
 						<h3 className="text-xl font-medium px-20">
 							A Portfolio Platform for Contractors and Freelancers to showcase
