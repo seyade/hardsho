@@ -27,31 +27,40 @@ const Home = () => {
 	return (
 		<div ref={containerRef} className="plusjakartasans px-11 py-5">
 			<Header />
-			<section className="banner flex my-36 text-white">
-				<div className="flex-1 h-auto py-28 justify-center">
-					<div className=" mb-20">
-						<h2 className="spacegrotesk text-6xl mb-20 pr-20">
+			<section className="banner flex mb-2 md:my-36 text-white">
+				<div className="flex-1 h-auto md:py-28 justify-center">
+					<div className="mb-10 md:mb-20">
+						<h2 className="spacegrotesk text-center md:text-left text-6xl mb-6 md:mb-20 md:pr-20">
 							Showcase how your code is living
 						</h2>
 
-						<h3 className="text-xl font-medium pr-20">
+						<div className="w-full md:pr-20 md:hidden mb-8">
+							<a
+								href="/sign-up"
+								className="flex flex-1 w-full justify-center md:inline-flex text-xl px-8 py-3 rounded-full text-white text-center font-medium bg-purple-950 hover:bg-purple-900 transition-all ease-in-out duration-300"
+							>
+								Get Started
+							</a>
+						</div>
+
+						<h3 className="text-xl font-medium md:pr-20">
 							Onbod is a platform that allows web developers & web designers to
 							easily manage, showcase and share interactive UI components of
 							their past projects along with their code.
 						</h3>
 					</div>
 
-					<div className="w-full pr-20">
+					<div className="w-full md:pr-20">
 						<a
 							href="/sign-up"
-							className="flex-1 text-xl px-8 py-3 rounded-full text-white text-center font-medium bg-purple-950 hover:bg-purple-900 transition-all ease-in-out duration-300"
+							className="hidden flex-1 w-full justify-center md:inline-flex text-xl px-8 py-3 rounded-full text-white text-center font-medium bg-purple-950 hover:bg-purple-900 transition-all ease-in-out duration-300"
 						>
 							Get Started
 						</a>
 					</div>
 				</div>
 
-				<div className="relative flex-1 flex justify-center mt-11 w-full">
+				<div className="relative flex-1 hidden md:flex justify-center mt-11 w-full">
 					<motion.div style={{ y: 0 }} className="absolute bg-teal-600">
 						<Image src={Placeholder1} alt="Placehoder 1" placeholder="blur" />
 					</motion.div>
@@ -72,17 +81,17 @@ const Home = () => {
 				</div>
 			</section>
 
-			<section className="mb-36 text-white">
-				<h2 className="spacegrotesk mb-24 text-5xl text-center font-light">
+			<section className="mb-7 md:my-36 text-white">
+				<h2 className="spacegrotesk mb-8 md:mb-24 text-4xl md:text-5xl text-center font-bold md:font-light">
 					Revolutionize your portfolio
 				</h2>
 
 				<div className="flex items-center">
-					<div className="flex-1">
+					<div className="flex-1 hidden md:block">
 						<Image src={Placeholder4} alt="Placeholder 4" />
 					</div>
 
-					<p className="flex-1 text-3xl">
+					<p className="flex-1 text-xl md:text-3xl">
 						Unleash the power of your past projects with Onbod. Turn your lines
 						of code into dynamic, captivating experiences. It&apos;s your chance
 						to showcase your skills like never before.
@@ -90,19 +99,19 @@ const Home = () => {
 				</div>
 			</section>
 
-			<section className="mb-36 text-white h-[650px]">
-				<h2 className="spacegrotesk mb-24 text-5xl text-center font-light">
+			<section className="mb-7 md:my-36 text-white md:h-[650px]">
+				<h2 className="spacegrotesk mb-8 md:mb-24 text-4xl md:text-5xl text-center font-bold md:font-light">
 					Bring your code to life
 				</h2>
 
 				<div className="flex">
-					<p className="flex-1 text-3xl pr-40">
+					<p className="flex-1 text-xl md:text-3xl md:pr-40">
 						Don&apos;t let your hard work go unnoticed. Turn your previous
 						projects into interactive showcases that grab attention and leave a
 						lasting impression.
 					</p>
 
-					<div className="relative flex-1">
+					<div className="relative flex-1 hidden md:block">
 						<motion.div className="absolute right-24" style={{ y: sm }}>
 							<Image src={Placeholder1} alt="Placehoder 1" />
 						</motion.div>
@@ -113,13 +122,13 @@ const Home = () => {
 				</div>
 			</section>
 
-			<section className="mb-36 text-white h-[650px]">
-				<h2 className="spacegrotesk mb-24 text-5xl text-center font-light">
+			<section className="mb-7 md:my-36 text-white md:h-[650px]">
+				<h2 className="spacegrotesk mb-8 md:mb-24 text-4xl md:text-5xl text-center font-bold md:font-light">
 					Attract clients, impress employers
 				</h2>
 
 				<div className="flex">
-					<div className="relative flex-1">
+					<div className="relative flex-1 hidden md:block">
 						<Image
 							src={Placeholder1}
 							alt="Placehoder 1"
@@ -131,7 +140,7 @@ const Home = () => {
 						</motion.div>
 					</div>
 
-					<p className="flex-1 text-3xl pr-20 mt-36">
+					<p className="flex-1 text-xl md:text-3xl md:pr-20 md:mt-36">
 						Not only showcases your coding prowess but use it as a magnet for
 						potential clients and employers seeking top talent. Open doors to
 						new opportunities.
@@ -139,15 +148,21 @@ const Home = () => {
 				</div>
 			</section>
 
-			<footer className="flex justify-between items-center">
-				<p className="flex-1 text-white">
-					&copy; 2024 Onbod. All rights reserved.{" "}
+			<footer className="md:flex grid justify-between items-center">
+				<p className="flex-1 order-last md:order-none text-center text-white">
+					&copy; 2024 Onbod. All rights reserved.
 				</p>
 
-				<nav className="flex-1 flex justify-evenly text-white text-right">
-					<Link href="/privacy-policy">Privacy Policy</Link>
-					<Link href="/t-and-c">Terms &amp; Conditions</Link>
-					<Link href="/cookie-policy">Cookie Policy</Link>
+				<nav className="mb-5 md:mb-0 flex-1 flex-col items-center md:flex justify-evenly text-white text-center md:text-right">
+					<Link href="/privacy-policy" className="block md:inline-block">
+						Privacy Policy
+					</Link>
+					<Link href="/t-and-c" className="block md:inline-block">
+						Terms &amp; Conditions
+					</Link>
+					<Link href="/cookie-policy" className="block md:inline-block">
+						Cookie Policy
+					</Link>
 				</nav>
 			</footer>
 		</div>
