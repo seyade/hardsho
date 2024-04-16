@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useGSAP } from "@gsap/react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import Header from "@/components/header/Header";
@@ -15,20 +16,18 @@ import Placeholder4 from "../../public/assets/placeholder_4.png";
 const Home = () => {
 	const containerRef = useRef(null);
 
-	const { scrollYProgress } = useScroll({
+	const { scrollXProgress } = useScroll({
 		target: containerRef,
-		offset: ["start end", "end start"],
+		offset: ["start start", "end start"],
 	});
-	const sm = useTransform(scrollYProgress, [0, 1], [0, -50]);
-	const md = useTransform(scrollYProgress, [0, 1], [-50, 300]);
-	const lg = useTransform(scrollYProgress, [0, 1], [150, 550]);
-	const xlg = useTransform(scrollYProgress, [0, 1], [-150, 100]);
+	const y1 = useTransform(scrollXProgress, [0, 1], ["0%", "100%"]);
+	const y2 = useTransform(scrollXProgress, [0, 1], ["0%", "200%"]);
 
 	return (
-		<div ref={containerRef} className="plusjakartasans px-11 py-5">
+		<div className="plusjakartasans grid grid-cols-12 px-11 py-5">
 			<Header />
-			<section className="banner flex my-36 text-white">
-				<div className="flex-1 h-auto py-28 justify-center">
+			<section className="banner col-span-12 grid grid-cols-2 my-36 text-white">
+				<div className="grid place-items-center h-auto py-28 justify-center">
 					<div className=" mb-20">
 						<h2 className="spacegrotesk text-6xl mb-20 pr-20">
 							Showcase how your code is living
@@ -44,45 +43,53 @@ const Home = () => {
 					<div className="w-full pr-20">
 						<a
 							href="/sign-up"
-							className="flex-1 text-xl px-8 py-3 rounded-full text-white text-center font-medium bg-purple-950 hover:bg-purple-900 transition-all ease-in-out duration-300"
+							className="flex-1 text-xl px-8 py-3 bg-slate-800 rounded-full text-white text-center font-medium"
 						>
 							Get Started
 						</a>
 					</div>
 				</div>
 
-				<div className="relative flex-1 flex justify-center mt-11 w-full">
-					<motion.div style={{ y: 0 }} className="absolute bg-teal-600">
-						<Image src={Placeholder1} alt="Placehoder 1" placeholder="blur" />
+				<div className="relative bg-orange-950" ref={containerRef}>
+					<motion.div
+						className="absolute top-0 left-0 z-10 w-40"
+						style={{
+							y: y1,
+							backgroundColor: "brown",
+							backgroundImage: `url(/assets/placeholder_1.png)`,
+							backgroundSize: "contain",
+							backgroundRepeat: "no-repeat",
+							backgroundPosition: "top",
+							height: 200,
+						}}
+					>
+						{/* <Image src={Placeholder2} alt="Placehoder 2" /> */}
+					</motion.div>
+					{/* <Image
+						src={Placeholder1}
+						alt="Placehoder 1"
+						className="absolute left-40"
+					/>
+
+					<motion.div style={{ y: y1, backgroundColor: "brown" }}>
+						<Image src={Placeholder2} alt="Placehoder 2" />
 					</motion.div>
 
-					<motion.div
-						style={{ y: lg }}
-						className="absolute bg-orange-600 left-0"
-					>
-						<Image src={Placeholder2} alt="Placehoder 2" placeholder="blur" />
-					</motion.div>
-
-					<motion.div
-						style={{ y: md }}
-						className="absolute bg-orange-400 right-0"
-					>
-						<Image src={Placeholder3} alt="Placehoder 3" placeholder="blur" />
-					</motion.div>
+					<motion.div style={{ y: y2, backgroundColor: "teal" }}>
+						<Image src={Placeholder3} alt="Placehoder 3" />
+					</motion.div> */}
 				</div>
 			</section>
 
-			<section className="mb-36 text-white">
+			<section className="col-span-12 mb-36 text-white">
 				<h2 className="spacegrotesk mb-24 text-5xl text-center font-light">
 					Revolutionize your portfolio
 				</h2>
 
 				<div className="flex items-center">
-					<div className="flex-1">
-						<Image src={Placeholder4} alt="Placeholder 4" />
-					</div>
+					<Image src={Placeholder4} alt="Placeholder 4" />
 
-					<p className="flex-1 text-3xl">
+					<p className="text-3xl ml-32 pr-40">
 						Unleash the power of your past projects with Onbod. Turn your lines
 						of code into dynamic, captivating experiences. It&apos;s your chance
 						to showcase your skills like never before.
@@ -90,45 +97,50 @@ const Home = () => {
 				</div>
 			</section>
 
-			<section className="mb-36 text-white h-[650px]">
+			<section className="col-span-12 mb-36 text-white h-[650px]">
 				<h2 className="spacegrotesk mb-24 text-5xl text-center font-light">
 					Bring your code to life
 				</h2>
 
-				<div className="flex">
-					<p className="flex-1 text-3xl pr-40">
+				<div className="relative grid grid-cols-5">
+					<p className="flex-1 col-span-3 text-3xl pr-40">
 						Don&apos;t let your hard work go unnoticed. Turn your previous
 						projects into interactive showcases that grab attention and leave a
 						lasting impression.
 					</p>
 
-					<div className="relative flex-1">
-						<motion.div className="absolute right-24" style={{ y: sm }}>
-							<Image src={Placeholder1} alt="Placehoder 1" />
-						</motion.div>
-						<motion.div className="absolute top-11" style={{ y: xlg }}>
-							<Image src={Placeholder3} alt="Placehoder 2" />
-						</motion.div>
+					<div className="flex-1 col-span-2">
+						<Image
+							src={Placeholder1}
+							alt="Placehoder 1"
+							className="absolute right-24"
+						/>
+						<Image
+							src={Placeholder3}
+							alt="Placehoder 2"
+							className="absolute top-11"
+						/>
 					</div>
 				</div>
 			</section>
 
-			<section className="mb-36 text-white h-[650px]">
+			<section className="relative col-span-12 mb-36 text-white h-[650px]">
 				<h2 className="spacegrotesk mb-24 text-5xl text-center font-light">
 					Attract clients, impress employers
 				</h2>
 
-				<div className="flex">
+				<div className="relative flex">
 					<div className="relative flex-1">
 						<Image
 							src={Placeholder1}
 							alt="Placehoder 1"
 							className="absolute top-0 left-0"
 						/>
-
-						<motion.div className="absolute top-0 right-12" style={{ y: xlg }}>
-							<Image src={Placeholder3} alt="Placehoder 2" />
-						</motion.div>
+						<Image
+							src={Placeholder3}
+							alt="Placehoder 2"
+							className="absolute top-0 right-12"
+						/>
 					</div>
 
 					<p className="flex-1 text-3xl pr-20 mt-36">
@@ -139,7 +151,7 @@ const Home = () => {
 				</div>
 			</section>
 
-			<footer className="flex justify-between items-center">
+			<footer className="col-span-12 flex justify-between items-center">
 				<p className="flex-1 text-white">
 					&copy; 2024 Onbod. All rights reserved.{" "}
 				</p>

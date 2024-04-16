@@ -51,7 +51,7 @@ export default function RootLayout({
 				className={`${inter.className} ${inconsolata.variable} ${plusjakartasans.variable} ${opensans.variable} ${spacegrotesk.variable}`}
 			>
 				<div className="h-full bg-gradient-to-b from-[#00042d] via-[#170e00] to-[#04001e]">
-					<main className="m-auto lg:max-w-[1440px] text-white ">
+					<main className="m-auto w-full lg:max-w-[1440px] text-white ">
 						<ApolloWrapper>{children}</ApolloWrapper>
 					</main>
 				</div>

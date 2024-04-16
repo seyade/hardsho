@@ -3,7 +3,7 @@
 import { ChangeEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LuCode2, LuEye } from "react-icons/lu";
-import Pane from "@/components/pane/Pane";
+import Editor from "@/components/editor/Editor";
 import {
 	CREATE_PROJECTS,
 	UPDATE_PROJECTS,
@@ -123,11 +123,11 @@ const Builder = () => {
 
 			<section className="editorw-full h-[90vh]">
 				<div className="code flex justify-between items-center">
-					<Pane onChange={onHandleHTML} paneTitle="HTML" rows={12} />
+					<Editor onChange={onHandleHTML} title="HTML" rows={12} />
 
-					<Pane onChange={onHandleCSS} paneTitle="CSS" rows={12} />
+					<Editor onChange={onHandleCSS} title="CSS" rows={12} />
 
-					<Pane onChange={onHandleJS} paneTitle="JavaScript" rows={12} />
+					<Editor onChange={onHandleJS} title="JavaScript" rows={12} />
 				</div>
 
 				<section className="output-pane w-full h-full">
