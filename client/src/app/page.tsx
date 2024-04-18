@@ -27,8 +27,8 @@ const Home = () => {
 	return (
 		<div ref={containerRef} className="plusjakartasans px-11 py-5">
 			<Header />
-			<section className="banner flex mb-2 md:my-36 text-white">
-				<div className="flex-1 h-auto md:py-28 justify-center">
+			<section className="banner flex mb-2 lg:my-36 text-white">
+				<div className="flex-1 h-auto md:pt-28 lg:pt-0 lg:py-28 justify-center">
 					<div className="mb-10 md:mb-20">
 						<h2 className="spacegrotesk text-center md:text-left text-6xl mb-6 md:mb-20 md:pr-20">
 							Showcase how your code is living
@@ -53,7 +53,7 @@ const Home = () => {
 					<div className="w-full md:pr-20">
 						<a
 							href="/sign-up"
-							className="hidden flex-1 w-full justify-center md:inline-flex text-xl px-8 py-3 rounded-full text-white text-center font-medium bg-purple-950 hover:bg-purple-900 transition-all ease-in-out duration-300"
+							className="hidden flex-1 justify-center md:inline-flex text-xl px-8 py-3 rounded-full text-white text-center font-medium bg-purple-950 hover:bg-purple-900 transition-all ease-in-out duration-300"
 						>
 							Get Started
 						</a>
@@ -86,7 +86,7 @@ const Home = () => {
 					Revolutionize your portfolio
 				</h2>
 
-				<div className="flex items-center">
+				<div className="flex items-center gap-3">
 					<div className="flex-1 hidden md:block">
 						<Image src={Placeholder4} alt="Placeholder 4" />
 					</div>
@@ -99,7 +99,7 @@ const Home = () => {
 				</div>
 			</section>
 
-			<section className="mb-7 md:my-36 text-white md:h-[650px]">
+			<section className="mb-7 md:my-36 text-white lg:h-[650px]">
 				<h2 className="spacegrotesk mb-8 md:mb-24 text-4xl md:text-5xl text-center font-bold md:font-light">
 					Bring your code to life
 				</h2>
@@ -122,12 +122,12 @@ const Home = () => {
 				</div>
 			</section>
 
-			<section className="mb-7 md:my-36 text-white md:h-[650px]">
+			<section className="mb-7 lg:my-36 text-white lg:h-[650px]">
 				<h2 className="spacegrotesk mb-8 md:mb-24 text-4xl md:text-5xl text-center font-bold md:font-light">
 					Attract clients, impress employers
 				</h2>
 
-				<div className="flex">
+				<div className="flex gap-4">
 					<div className="relative flex-1 hidden md:block">
 						<Image
 							src={Placeholder1}
@@ -148,12 +148,12 @@ const Home = () => {
 				</div>
 			</section>
 
-			<footer className="md:flex grid justify-between items-center">
+			<footer className="md:flex grid justify-between items-center border-t md:border-0 pt-5">
 				<p className="flex-1 order-last md:order-none text-center text-white">
 					&copy; 2024 Onbod. All rights reserved.
 				</p>
 
-				<nav className="mb-5 md:mb-0 flex-1 flex-col items-center md:flex justify-evenly text-white text-center md:text-right">
+				<nav className="mb-5 md:mb-0 flex-1 flex-col md:flex-row items-center md:flex justify-evenly text-white text-center md:text-right">
 					<Link href="/privacy-policy" className="block md:inline-block">
 						Privacy Policy
 					</Link>
