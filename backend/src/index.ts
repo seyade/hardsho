@@ -14,7 +14,7 @@ import rootResolver from "./resolvers/index.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = parseInt(process.env.PORT as string, 10) || 4000;
 
 const typeDefs = readFileSync("./src/schema.graphql", { encoding: "utf-8" });
 
@@ -23,6 +23,17 @@ const server = new ApolloServer({
 	resolvers: rootResolver,
 });
 
+console.log("PORT:: ", typeof PORT);
+
+const { url } = await startStandaloneServer(server, {
+	listen: {
+		port: 5000,
+	},
+	context: async ({ req }: any) => req,
+});
+
+console.log(`Apollo server running in ${url}`);
+
 app.use("/project", (req: Request, res: Response) => {
 	return res.status(200).json({
 		message: "Enter the Hardsho app.",
@@ -30,10 +41,6 @@ app.use("/project", (req: Request, res: Response) => {
 		name: "Hardsho",
 	});
 });
-
-await server.start();
-
-app.use("/graphql", cors(), express.json(), expressMiddleware(server));
 
 // ROUTES
 app.get("/", (req: Request, res: Response) => {
