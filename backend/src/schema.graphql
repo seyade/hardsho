@@ -12,6 +12,16 @@ type User {
 	updatedAt: String!
 }
 
+type Workspace {
+	id: ID!
+	userId: ID!
+	name: String!
+	description: String
+	projects: [Project]!
+	createdAt: String!
+	updatedAt: String!
+}
+
 type Client {
 	id: ID!
 	userId: ID!
@@ -45,6 +55,12 @@ type Craft {
 }
 
 type Query {
+	user(id: ID!): User
+	users: [User]
+
+	workspace(userId: ID!): Workspace
+	workspaces(userId: ID!): [Workspace]
+
 	clients(userId: ID!): [Client]
 	client(id: ID): Client
 
@@ -53,9 +69,6 @@ type Query {
 
 	crafts(projectId: ID!): [Craft]
 	craft(id: ID): Craft
-
-	user(id: ID!): User
-	users: [User]
 }
 
 type Mutation {
